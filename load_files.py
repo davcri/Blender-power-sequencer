@@ -157,11 +157,10 @@ class ImportLocalFootage(bpy.types.Operator):
                 img_frame = frame_current
                 for img in files_dict:
                     path = os.path.join(folder, img['subfolder'])
-                    # FIXME: temp hack so images import properly
-                    file = [{'name': img['name'].replace("img\\", "")}]
+                    file = [{'name': img['name']}]
                     sequencer.image_strip_add(
                         SEQUENCER_AREA,
-                        directory=path,
+                        directory="//",  # FIXME: temp hack so images import properly
                         files=file,
                         frame_start=img_frame,
                         frame_end=img_frame + self.img_length,
